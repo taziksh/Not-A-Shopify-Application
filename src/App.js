@@ -4,24 +4,38 @@ import { useEffect, useState } from "react";
 import { StarIcon } from '@chakra-ui/icons'
 import moment from 'moment';
 
-function Card(props){
-  const [liked, setLiked] = useState(false);
+function Header(props){
+  return(
+        <Text align="center" fontWeight="extrabold" fontSize="7xl" mb={8} bgClip="text" bgGradient="linear(to-r,#7928CA, #FF0080)"> 
+          Space photos at astronomically low prices.  
+        </Text>
+  )
+}
 
-  return (
-    <Box class="card" key={props.title} py={2} mb={3} px={3} borderWidth="2px" borderColor="gray">
-    <Flex direction="row">
-       <Text fontSize="2xl" fontWeight="semibold">{props.title}</Text>
+function StarButton(){
+  return(
        <IconButton
         aria-label="Star your favourite stars"
         icon={<StarIcon />}
         size="lg"
       />       
+  )
+}
+
+function Card(props){
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <Box class="card" key={props.title} py={2} mb={3} px={5} mx={4} borderRadius="lg" borderWidth="1px" borderColor="gray">
+    <Flex direction="row">
+       <Text fontSize="2xl" fontFamily="merriweather" fontWeight="semibold">{props.title}</Text>
     </Flex>
     <Image 
       src={props.hdurl} 
       alt={props.title} 
       fit="cover" 
       boxSize="600px" 
+      borderRadius="lg"
       borderColor="gray" 
     />
     <Text color="gray.500">{props.date}</Text>
@@ -65,9 +79,7 @@ function App() {
   return (
     <ChakraProvider>
       <Box borderRadius="lg" pb={4} mb={4}>
-        <Text align="center" fontWeight="extrabold" fontSize="7xl" bgClip="text" bgGradient="linear(to-r,#7928CA, #FF0080)"> 
-          Space photos at astronomically low prices.  
-        </Text>
+        <Header/>
         <Gallery data={data}/>
       </Box>
     </ChakraProvider>
