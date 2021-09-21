@@ -59,10 +59,6 @@ function Gallery(props) {
 }
 
 function App() {
-  const today = moment().format('YYYY-MM-DD');
-  const lastDay = moment().add(-5, 'days').format('YYYY-MM-DD');
-  const [startDay, setStartDay] = useState(lastDay);
-  const [endDay, setEndDay] = useState(today);
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -72,8 +68,6 @@ function App() {
       setData(json);
     }
     fetchData();
-    setEndDay(startDay);
-    setStartDay(moment().add(-5, 'days').format('YYYY-MM-DD'));
   }, []);
 
   return (
